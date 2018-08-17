@@ -1,0 +1,26 @@
+version: "3.2"
+services:
+  broker:
+    image: microsoft/azure-service-broker:v1.1.0
+    environment:
+      LOG_LEVEL: DEBUG
+      AZURE_SUBSCRIPTION_ID: ${AZURE_SUBSCRIPTION_ID}
+      AZURE_TENANT_ID: ${AZURE_TENANT_ID}
+      AZURE_CLIENT_ID: ${AZURE_CLIENT_ID}
+      AZURE_CLIENT_SECRET: ${AZURE_CLIENT_SECRET}
+      STORAGE_REDIS_HOST: redis
+      STORAGE_REDIS_DB: 0
+      ASYNC_REDIS_HOST: redis
+      ASYNC_REDIS_DB: 1
+      CRYPTO_ENCRYPTION_SCHEME: NOOP
+      BASIC_AUTH_USERNAME: username
+      BASIC_AUTH_PASSWORD: password
+      MIN_STABILITY: EXPERIMENTAL
+    links:
+    - broker-redis:redis
+  test-redis:
+    image: &redis-image redis:3.2.4
+  broker-redis:
+    image: *redis-image
+    ports:
+    - "6379:6379"

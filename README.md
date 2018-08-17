@@ -35,7 +35,6 @@ You can also contact me at [Jeremy Rickard](mailto:jeremy.rickard@microsoft.com)
 
 1. Git is [installed](https://docs.microsoft.com/en-us/azure/devops/git/install-and-set-up-git)
 1. Docker is [installed](https://docs.docker.com/install/#relationship-between-ce-and-ee-code). You'll also want [Docker Compose](https://docs.docker.com/compose/install/).
-1. Make is installed. If you're using Windows, try using [Chocolatey](https://chocolatey.org/) to install [CMake](https://chocolatey.org/packages/cmake)
 1. Curl is [installed](https://curl.haxx.se/download.html).
 1. A Java JDK is [installed](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 
@@ -137,17 +136,10 @@ The Open Service Broker API is also developed on GitHub. You can find the reposi
 
 Open Service Broker for Azure is an open source project and can be found on GitHub! You can find it at https://github.com/Azure/open-service-broker-azure.
 
-In order to experiment with OSBA locally, first clone the repository:
-
-```
-git clone git@github.com:Azure/open-service-broker-azure.git
-cd open-service-broker-azure
-```
-
-Now, you can run Open Service Broker for Azure by running the following command:
+You can run Open Service Broker for Azure locally by running the following command:
 
 ```console
-make run
+docker-compose run -p 8080:8080 broker
 ```
 
 While this is running, you can use cURL to interact with the broker. To verify that the catalog endpoint is working, run:
@@ -175,7 +167,7 @@ Once you have these installed, you can run `cf dev start` to launch the local CF
 Next, start OSBA up. The command above can be reused, but run it as a background process.
 
 ```
-make run &
+docker-compose run -p 8080:8080 broker
 ```
 
 Register OSBA with Cloud Foundry. To do this, you'll need your IP address.
@@ -349,7 +341,7 @@ az aks create --resource-group osba-in-action --name osba-in-action --generate-s
 This will take some time to fully provision. When it completes, you'll want to get the relevant cluster configuration for your kubectl configuration with the following command:
 
 ```
-az aks get-credentials --resource-group aks-group --name osba-quickstart-cluster --admin
+az aks get-credentials --resource-group osba-in-action --name osba-in-action --admin
 ```
 
 You cluster should be ready to use with the following steps now!
@@ -486,3 +478,11 @@ Now you can open a web browser and go to http://localhost:8080. You can also ver
 A new feature in Service Catalog is the ability to register service brokers in specific namespaces. This, when combined with another feature called Catalog Restrictions, enables you to expose very specific services to different teams. You can leverage Kubernetes Role Based Access Control in order to limit who can provision services, and what services they can provision.
 
 To try out these capabilities, please see [OSBA Namespace Broker Demo](https://github.com/jeremyrickard/osba-namespace-broker-demo)
+
+## Cleanup
+
+To remove the resources we have created in Azure, you can run the following command to remove the resource group:
+
+```
+az group delete -n osba-in-action
+```
