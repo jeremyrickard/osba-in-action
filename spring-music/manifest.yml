@@ -4,7 +4,6 @@ applications:
   memory: 1G
   path: build/libs/spring-music.jar
 env:
-   JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '[enabled: false]'
    RUNTIME: cf
    SPRING_PROFILES_ACTIVE: cosmosdb
 services: 
