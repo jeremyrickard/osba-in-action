@@ -36,6 +36,7 @@ You can also contact me at [Jeremy Rickard](mailto:jeremy.rickard@microsoft.com)
 1. Docker is [installed](https://docs.docker.com/install/#relationship-between-ce-and-ee-code). You'll also want [Docker Compose](https://docs.docker.com/compose/install/).
 1. Make is installed. If you're using Windows, try using [Chocolatey](https://chocolatey.org/) to install [CMake](https://chocolatey.org/packages/cmake)
 1. Curl is [installed](https://curl.haxx.se/download.html).
+1. A Java JDK is [installed](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 
 ## Setup
 
@@ -214,10 +215,12 @@ az cosmosdb list -g osba-in-action -o table
 Next, create the service
 
 ```
-cf create-service cosmosdb azure-cosmosdb-mongo-account account -c '{
+cf create-service azure-cosmosdb-mongo-account account cosmosdb -c '{
   "location": "eastus",
   "resourceGroup": "osba-in-action",
-  "allowedIPRanges" : ["0.0.0.0/0"]
+  "ipFilters" : {
+    "allowedIPRanges" : ["0.0.0.0/0"]
+  }
 }'
 ```
 
@@ -428,7 +431,9 @@ Now, we are ready to create a **ServiceInstance** using the service catalog cli:
 svcat provision cosmosdb --class azure-cosmosdb-mongo-account --plan account  --params-json '{
   "location": "eastus",
   "resourceGroup": "osba-in-action",
-  "allowedIPRanges" : ["0.0.0.0/0"]
+  "ipFilters" : {
+    "allowedIPRanges" : ["0.0.0.0/0"]
+  }
 }'
 ```
 
