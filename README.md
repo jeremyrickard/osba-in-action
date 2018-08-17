@@ -4,6 +4,17 @@ This repository includes examples of how to use Open Service Broker for Azure wi
 
 If you encounter any issues, please open an [issue](https://github.com/jeremyrickard/osba-in-action/issues/new).
 
+* [Prerequisites](#prerequisites)
+* [Setup](#setup)
+  * [Create your Azure account](#azure-account)
+  * [Install Azure CLI](#the-azure-cli)
+  * [Setup your Subscription](#setup-your-subscription)
+  * [Create A Service Principal](#create-a-service-principal)
+* [Take A Tour of OSBA](#take-a-tour-of-osba)
+* [Use OSBA with Cloud Foundry](#use-osba-with-cloud-foundry)
+* [Use OSBA with Kubernetes](#use-osba-with-kubernetes)
+
+
 ## Prerequisites
 
 1. Git is [installed](https://docs.microsoft.com/en-us/azure/devops/git/install-and-set-up-git)
@@ -11,7 +22,7 @@ If you encounter any issues, please open an [issue](https://github.com/jeremyric
 1. Make is installed. If you're using Windows, try using [Chocolatey](https://chocolatey.org/) to install [CMake](https://chocolatey.org/packages/cmake)
 1. Curl is [installed](https://curl.haxx.se/download.html).
 
-## Get An Azure Account And Setup Your Environment
+## Setup
 
 ### Azure Accounts
 
@@ -219,7 +230,8 @@ cd osba-in-action/spring-music
 cf push
 ```
 
-Deploying an application to CF is as simple as that. Because you've included a service reference in the manifest, the CosmosDB instance will automatically be bound to your new app.
+Deploying an application to CF is as simple as that. Because you've included a service reference in the manifest, the CosmosDB instance will automatically be bound to your new app. You should be able to access it at:
+
 
 ## Use OSBA with Kubernetes
 
