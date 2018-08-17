@@ -6,14 +6,25 @@ If you encounter any issues, please open an [issue](https://github.com/jeremyric
 
 * [Prerequisites](#prerequisites)
 * [Setup](#setup)
-  * [Create your Azure account](#azure-account)
+  * [Create your Azure account](#create-your-azure-account)
   * [Install Azure CLI](#the-azure-cli)
   * [Setup your Subscription](#setup-your-subscription)
   * [Create A Service Principal](#create-a-service-principal)
 * [Take A Tour of OSBA](#take-a-tour-of-osba)
 * [Use OSBA with Cloud Foundry](#use-osba-with-cloud-foundry)
+  * [Install CF Dev](#install-cf-dev)
+  * [Run OSBA](#run-osba)
+  * [Register OSBA](#register-osba)
+  * [Create a CosmosDB Instance with Cloud Foundry](#create-a-cosmosdb-instance-with-cloud-foundry)
+  * [Deploy an App](#deploy-an-app)
 * [Use OSBA with Kubernetes](#use-osba-with-kubernetes)
-
+  * [Installing the Service Catalog CLI](#install-the-service-catalog-cli)
+  * [Install Minikube](#install-minikube)
+  * [Install Helm](#install-helm)
+  * [Install Service Catalog](#install-service-catalog)
+  * [Install Open Service Broker for Azure](#install-open-service-broker-for-azure)
+  * [Create a CosmosDB Instance with Kubernetes](#create-a-cosmosdb-instance-with-kubernetes)
+  * [Deploy an App on Kubernetes](#deploy-an-app-on-kubernetes)
 
 ## Prerequisites
 
@@ -24,7 +35,7 @@ If you encounter any issues, please open an [issue](https://github.com/jeremyric
 
 ## Setup
 
-### Azure Accounts
+### Create your Azure account
 
 To follow this guide, you will need a Microsoft Azure Account. If you don't already have one, click [this link](https://azure.microsoft.com/en-us/free/) to get started!
 
@@ -141,13 +152,17 @@ This will return a large blob of JSON that represents the Catalog.
 
 To try out OSBA with Cloud Foundry, you'll first need to install Cloud Foundry! There are two ways to get going with CF locally. For both, you'll want to install the [CF CLI](https://pivotal.io/platform/pcf-tutorials/getting-started-with-pivotal-cloud-foundry-dev/install-the-cf-cli).
 
+### Install CF Dev
+
 The first way to install CF locally is to install [PCF Dev](https://pivotal.io/platform/pcf-tutorials/getting-started-with-pivotal-cloud-foundry-dev/install-pcf-dev). This requires an account with Pivotal. You can follow the instructions there to get started. 
 
 The second way is to use the newer open source [CF Dev](https://github.com/cloudfoundry-incubator/cfdev) release. At the time of writing this guide, this only works on Mac OS.
 
 Once you have these installed, you can run `cf dev start` to launch the local CF environment. Depending on your computer, this may take a little time. Once complete, log in to your instance and follow the following steps to register OSBA with your CF instance.
 
-First, start OSBA up. The command above can be reused, but run it as a background process.
+### Run OSBA
+
+Next, start OSBA up. The command above can be reused, but run it as a background process.
 
 ```
 make run &
@@ -163,6 +178,8 @@ ifconfig
 ipconfig
 ```
 
+### Register OSBA
+
 Next, use the **cf** cli to register OSBA as a space scoped broker:
 
 ```
@@ -176,6 +193,8 @@ cf marketplace
 ```
 
 There should be a number of Azure services listed. Next, we'll provision an instance of the CosmosDB MongoDB Service.
+
+### Create a CosmosDB Instance with Cloud Foundry
 
 First, verify there is no CosmosDB instance:
 
@@ -205,6 +224,8 @@ When it's done, you can verify that it was created with the Azure CLI:
 ```
 az cosmosdb list -g osba-in-action -o table
 ```
+
+### Deploy an App
 
 Next, we'll push the **spring-music** sample application to your CF instance and bind it to CosmosDB! A copy of the Spring Music app is in this repository and it contains a CF manifest that will bind to your new cosmosdb instance.
 
@@ -237,8 +258,7 @@ Deploying an application to CF is as simple as that. Because you've included a s
 
 You can use either Minikube or the Azure Kubernetes Service to experiment with OSBA and the OSBA GitHub repository provides great quick-start guides for both! We'll use Minikube here, to show an experience similar to Cloud Foundry. The Kubernetes CLI, **kubectl**, doesn't have great integration for Service Brokers. Instead, you'll want to install the service catalog cli.
 
-
-### Installing the Service Catalog CLI
+### Install the Service Catalog CLI
 
 Follow the appropriate instructions for your operating system to install svcat. The binary
 can be used by itself, or as a kubectl plugin.
@@ -392,7 +412,7 @@ po/osba-azure-service-broker-8495bff484-7ggj6   1/1       Running   0          9
 po/osba-redis-5b44fc9779-hgnck                  1/1       Running   0          9d
 ```
 
-### Create a Service Instance
+### Create a CosmosDB Instance with Kubernetes
 
 Now, we are ready to create a **ServiceInstance** using the service catalog cli:
 
@@ -409,6 +429,8 @@ Once that completes, you can deploy the application using Helm
 ```console
 helm install ./contrib/kubernetes/charts/spring-music -n spring-music
 ```
+
+### Deploy an App on Kubernetes
 
 Now we should be able to access our application:
 
