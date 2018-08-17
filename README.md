@@ -29,6 +29,7 @@ You can also contact me at [Jeremy Rickard](mailto:jeremy.rickard@microsoft.com)
   * [Install Open Service Broker for Azure](#install-open-service-broker-for-azure)
   * [Create a CosmosDB Instance with Kubernetes](#create-a-cosmosdb-instance-with-kubernetes)
   * [Deploy an App on Kubernetes](#deploy-an-app-on-kubernetes)
+  * [Advanced Topic](#advanced-topic)
 
 ## Prerequisites
 
@@ -455,3 +456,9 @@ $ kubectl port-forward spring-music-spring-music-7c9d967686-n5zc7 8080:8080
 ```
 
 Now you can open a web browser and go to http://localhost:8080. You can also verify data has been created in the new instance with the [Azure Portal](https://portal.azure.com)
+
+## Advanced Topic
+
+A new feature in Service Catalog is the ability to register service brokers in specific namespaces. This, when combined with another feature called Catalog Restrictions, enables you to expose very specific services to different teams. You can leverage Kubernetes Role Based Access Control in order to limit who can provision services, and what services they can provision.
+
+To try out these capabilities, please see [OSBA Namespace Broker Demo](https://github.com/jeremyrickard/osba-namespace-broker-demo)
