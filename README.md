@@ -13,6 +13,7 @@ You can also contact me at [Jeremy Rickard](mailto:jeremy.rickard@microsoft.com)
   * [Install Azure CLI](#the-azure-cli)
   * [Setup your Subscription](#setup-your-subscription)
   * [Create A Service Principal](#create-a-service-principal)
+* [Take a Tour of The OSB API](#take-a-tour-of-the-osb-api)
 * [Take A Tour of OSBA](#take-a-tour-of-osba)
 * [Use OSBA with Cloud Foundry](#use-osba-with-cloud-foundry)
   * [Install CF Dev](#install-cf-dev)
@@ -124,7 +125,11 @@ resources on your account.
     $env:AZURE_CLIENT_SECRET = "<Password>"
     ```
 
-You now have your environment configured to work with Azure resources and OSBA! Next, let's take a look at OSBA.
+You now have your environment configured to work with Azure resources and OSBA! Next, let's take a look at OSB and OSBA.
+
+## Take a Tour of The OSB API
+
+The Open Service Broker API is also developed on GitHub. You can find the repository [here](https://github.com/openservicebrokerapi/servicebroker). There are regular developer meetings that you can attend, with all the necessary information found in the GitHub repo.
 
 ## Take A Tour of OSBA
 
