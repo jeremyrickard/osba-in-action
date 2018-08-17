@@ -324,13 +324,35 @@ $env:PATH += ";${pwd}\bin"
 svcat version --client
 ```
 
-### Install Minikube
+### Create a Cluster
+
+Most of this demonstration can be completed on either a local or remote Kubernetes cluster. You can chose to run locally, with Minikube, or using the Azure Kubernetes Service (AKS). Instructions for both can be found below
+
+#### Create a Minikube cluster
 
 The next step is to install Minikube. Minikube has some[prerequisites](https://kubernetes.io/docs/tasks/tools/install-minikube/) you'll need to install first, specifically you'll need a Hypervisor and the `kubectl` command line tool. The Minikube documentation has links to help you get going on the appropriate system. Once installed, you can create a Minikube cluster with the following command
 
 ```
 minikube start
 ```
+
+When you run this command, the cluster will start with RBAC enabled and your kubectl configuration will automatically be updated. You can skip down to [Install Helm](#install-helm) at this point.
+
+#### Create an AKS cluster
+
+To use Service Catalog with AKS, you'll first need to create an AKS cluster. This can be done with the Azure portal or with the Azure CLI. The following Azure CLI command will create a 3 node AKS cluster.
+
+```
+az aks create --resource-group osba-in-action --name osba-in-action --generate-ssh-keys
+```
+
+This will take some time to fully provision. When it completes, you'll want to get the relevant cluster configuration for your kubectl configuration with the following command:
+
+```
+az aks get-credentials --resource-group aks-group --name osba-quickstart-cluster --admin
+```
+
+You cluster should be ready to use with the following steps now!
 
 ### Install Helm
 
