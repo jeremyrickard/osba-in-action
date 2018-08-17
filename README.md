@@ -4,6 +4,9 @@ This repository includes examples of how to use Open Service Broker for Azure wi
 
 If you encounter any issues, please open an [issue](https://github.com/jeremyrickard/osba-in-action/issues/new).
 
+You can also contact me at [Jeremy Rickard](mailto:jeremy.rickard@microsoft.com) or find me on Twitter at [jrrickard](https://twitter.com/jrrickard). I'm also regularly on the [Kubernetes Slack](http://slack.k8s.io/), you can find me there as **@jerickar**
+
+
 * [Prerequisites](#prerequisites)
 * [Setup](#setup)
   * [Create your Azure account](#create-your-azure-account)
