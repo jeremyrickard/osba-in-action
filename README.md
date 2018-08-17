@@ -40,6 +40,17 @@ You can also contact me at [Jeremy Rickard](mailto:jeremy.rickard@microsoft.com)
 
 ## Setup
 
+### Clone this Repository
+
+Several of the steps below will use the contents of this repository. You'll want to clone it locally so that you can follow along.
+
+```
+git clone https://github.com/jeremyrickard/osba-in-action.git
+cd osba-in-action
+```
+
+Once you've cloned it locally, you're ready to move on and setup your environment.
+
 ### Create your Azure account
 
 To follow this guide, you will need a Microsoft Azure Account. If you don't already have one, click [this link](https://azure.microsoft.com/en-us/free/) to get started!
@@ -247,7 +258,7 @@ services:
 - cosmosdb
 ```
 
-Now, clone the repo and push the app!
+Now, you're ready to push the app!
 
 ```
 cd spring-music
